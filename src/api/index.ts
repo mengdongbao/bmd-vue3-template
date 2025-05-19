@@ -1,6 +1,6 @@
 import { httpEvents, type IHttpEvents } from '@/utils/http'
 import type { IBusEvent } from '@/utils/types/busEvent'
-import { type IUserReadonlyStatic } from '@/utils/users/users'
+import { type IUserReadonlyStatic, User } from '@/utils/users/users'
 import axios, { type AxiosInstance } from 'axios'
 
 /**
@@ -27,7 +27,7 @@ export function axiosInstance() {
 export function addTokenReqInterceptors(
   axiosInstance: AxiosInstance,
   tokenName = 'token',
-  UserClass: IUserReadonlyStatic,
+  UserClass: IUserReadonlyStatic = User,
 ) {
   axiosInstance.interceptors.request.use((config) => {
     const hasToken = UserClass.hasTokenInStorage()
