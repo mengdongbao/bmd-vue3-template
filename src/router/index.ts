@@ -27,11 +27,10 @@ mitt.on('http:401', () => {
 })
 
 router.beforeEach((to, from, next) => {
-  let pass = true
   if (!inWhiteList(to)) {
     next({ name: 'login' })
   }
-  pass && next()
+  next()
 })
 
 export default router
